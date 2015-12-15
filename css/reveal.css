@@ -35,12 +35,12 @@ code.hljs {
     color: #777;
 }
 
-.link-highlight {
-    color: #C99D33;
+.reveal a:hover {
+    color: #5C4819 !important;
 }
 
-a:hover .link-highlight {
-    color: #FFDA82;
+.link-highlight {
+    color: #CBB98E;
 }
 
 .make-pop {
