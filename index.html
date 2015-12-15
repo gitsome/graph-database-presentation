@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Graph Databases</title>
+
+        <meta name="description" content="Presentation on use cases for Graph Databases">
+        <meta name="author" content="John Martin">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/beige.css" id="theme">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <link href="lib/cypher_highlight/cypher-highlighting.css" rel="stylesheet"/>
+
+        <link rel="stylesheet" href="lib/font-awesome-4.5.0/css/font-awesome.min.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>Graph Database</h1>
+                    <h3>Did you say...?</h3>
+                    <p>
+                        <small>Created by <a href="#">John Martin</a> / <a href="https://github.com/gitsome">@gitsome</a></small>
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Raph Database?</h2>
+                    <p>
+                        <img data-src="images/raph.jpg">
+                    </p>
+                </section>
+
+                <section>
+                    <h2>G-Raph Database?</h2>
+                    <p>
+                        <img data-src="images/giraffe.jpg">
+                    </p>
+                </section>
+
+                <!-- Example of nested vertical slides -->
+                <section data-background="images/graph_program.png">
+                    <div class="make-pop" >
+                        <h1>Graph Database!</h1>
+                        <a href="http://brendangriffen.com/blog/gow-mathematicians/">Brendan Griffen</a>
+                    </div>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What's in a Graph?</h1>
+                        <p>
+                            Graph Theory: A graph is an ordered pair G = (V, E) comprising a set V of vertices, nodes or points together with a set E of edges, arcs or lines, which are 2-element subsets of V
+                        </p>
+                        <p>
+                            V = [A, B, C, D, E, F]
+                        </p>
+                        <p>
+                            E = [(A, B), (A, C), (E, C)]
+                        </p>
+                    </section>
+                    <section data-background="images/undirected.png">
+                        <h2 class="make-pop">Undirected Graph</h1>
+                    </section>
+                    <section data-background="images/directed.png">
+                        <h2 class="make-pop">Directed Graph</h1>
+                    </section>
+                    <section data-background="images/weighted.png">
+                        <h2 class="make-pop">Weighted Graph</h1>
+                    </section>
+                    <section>
+                        <h2>Major Results from Graph Theory</h1>
+                        <ul>
+                            <li><a target="_blank" href="http://nrich.maths.org/6291">Four Color Theorem ( maps )</a></li>
+                            <li><a target="_blank" href="https://en.wikipedia.org/wiki/Stable_marriage_problem">Stable Marriage Problem ( medical school match )</a></li>
+                            <li><a target="_blank" href="https://en.wikipedia.org/wiki/Kuratowski%27s_theorem">Kuratowski's theorem ( planar graphs )</a></li>
+                            <li><a target="_blank" href="http://128.173.204.63/courses/Nextor_SC08/Applications_linear_programming.pdf">Modeling Linear Optimization ( flight scheduling )</a></li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Who benefits from graphs?</h1>
+                        <ul>
+                            <li>Chemistry Field</li>
+                            <li>Social Networks</li>
+                            <li>Computer Networks and Transportation (flow)</li>
+                            <li>Visualization</li>
+                            <li>Other Graph Based Data Analytics</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Early Adopers of Graph Tech</h1>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Google</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>What is a Graph Database?</h2>
+                        <ul>
+                            <li>Nodes and relationships are first class</li>
+                            <li>Local relationship based queries are first class</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Why Use a Graph Database?</h2>
+                        <ul>
+                            <li>Data model is graph'ish</li>
+                            <li>MOST queries for your data are graph'ish</li>
+                            <li>Real time performance of graph'ish queries are important</li>
+                            <li>Queries do not require a "complete node scan"</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Performance Part 1</h2>
+                        <p>Given 1,000 users with an average of 50 "friend" relationships each, determine if one person is connected to another in 4 or fewer hops.</p>
+                        <table>
+                            <tbody>
+                                <tr class="fragment">
+                                    <td>Relational DB</td><td>2000ms</td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td>Graph DB</td><td>2ms</td>
+                                </tr >
+                            </tbody>
+                        </table>
+                    </section>
+                    <section>
+                        <h2>Performance Part 2</h2>
+                        <p>Given 1,000,000 users with an average of 50 "friend" relationships each, determine if one person is connected to another in 4 or fewer hops.</p>
+                        <table>
+                            <tbody>
+                                <tr class="fragment">
+                                    <td >Relational DB</td><td>Stopped after 2 days</td>
+                                </tr>
+                                <tr class="fragment">
+                                    <td >Graph DB</td><td>2ms</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </section>
+                    <section data-background="images/giphy.gif">
+                        <h2 class="make-pop">Whoa</h1>
+                    </section>
+                    <section>
+                        <h2>Why So Fast?</h2>
+                        <p>Nodes store references to their neighbors</p>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Graph DB</td>
+                                    <td>Constant neighbor lookup cost ( Log<sub>2</sub><sup>50</sup> )</td>
+                                </tr>
+                                <tr>
+                                    <td>Relational DB</td>
+                                    <td>Log<sub>2</sub><sup>n</sup> to look up neighbor</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </section>
+
+
+                <section>
+
+                    <section>
+                        <h2>Examples of Graph DBs</h2>
+                    </section>
+
+                    <section>
+                        <img data-src="images/orientdb.png">
+                    </section>
+
+                    <section>
+                        <img data-src="images/neo4j.png">
+                    </section>
+
+                    <section>
+                        <table class="comparison-table">
+                            <thead><tr>
+                                <th></th>
+                                <th>OrientDB</th>
+                                <th>Neo4J</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>Maturity</td>
+                                    <td></td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Import Speed</td>
+                                    <td></td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Complex Queries</td>
+                                    <td></td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Distributed Graph Analysis</td>
+                                    <td></td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Start/Stop</td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Document Storage</td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DB Info</td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Security</td>
+                                    <td><i class="fa fa-check-circle"></i></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p><a href="http://www.slideshare.net/kwoxer/orientdb-vs-neo4j-comparison-of-queryspeedfunctionality">Curtis Mosters</a></p>
+                    </section>
+
+                    <section>
+                        <h2>Graph Technology Emergence</h2>
+                        <table class="comparison-table">
+                            <thead><tr>
+                                <th>Technology</th>
+                                <th>Initial Release Date</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td>Al Gore Creates Internet</td>
+                                    <td>1970</td>
+                                <tr>
+                                    <td>MySQL</td>
+                                    <td>1995</td>
+                                </tr>
+                                <tr>
+                                    <td>Neo4J</td>
+                                    <td>2007</td>
+                                </tr>
+                                <tr>
+                                    <td>MongoDB</td>
+                                    <td>2009</td>
+                                </tr>
+                                <tr>
+                                    <td>OrientDB</td>
+                                    <td>2010</td>
+                                </tr>
+                                <tr>
+                                    <td>D3 Data Visualization</td>
+                                    <td>2011</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                </section>
+
+
+                <section>
+                    <section>
+                        <h2>Understanding Neo4J Data and Cypher</h2>
+                        <p><a href="http://neo4j.com/" class="make-pop">Download and Install Neo4J Community ed.</a></p>
+                    </section>
+
+                    <section data-background="images/neo4j_browser.png">
+                        <h2 class="make-pop">Neo4J Browser</h2>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Basic Nodes</h2>
+                        <p class="align-left">CREATE a node</p>
+                        <pre><code class="cypher">CREATE (n)</code></pre>
+                        <p class="align-left">Find all nodes</p>
+                        <pre><code class="cypher">MATCH (n) RETURN n;</code></pre>
+                        <p class="align-left">Find node by id</p>
+                        <pre><code class="cypher">START n = node(13) RETURN n;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Basic Nodes</h2>
+                        <p class="align-left">DELETE all nodes</p>
+                        <pre><code class="cypher">MATCH (n) DELETE n;</code></pre>
+                        <p class="align-left">DELETE single node</p>
+                        <pre><code class="cypher">START n = node(13) DELETE n;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Nodes With Labels</h2>
+                        <p class="align-left">CREATE a node with a label</p>
+                        <pre><code class="cypher">CREATE (n:Person);</code></pre>
+                        <p class="align-left">CREATE a node with multiple labels</p>
+                        <pre><code class="cypher">CREATE (n:Person:Manager);</code></pre>
+                        <p class="align-left">Find all Person nodes</p>
+                        <pre><code class="cypher">MATCH (n:Person) RETURN n;</code></pre>
+                        <p class="align-left">DELETE all PERSON nodes</p>
+                        <pre><code class="cypher">MATCH (n:Person) DELETE n;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Nodes With Labels</h2>
+                        <p class="align-left">CREATE a node with a label</p>
+                        <pre><code class="cypher">CREATE (n:Person);</code></pre>
+                        <p class="align-left">Find all Person nodes</p>
+                        <pre><code class="cypher">MATCH (n:Person) return n;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Nodes With Properties</h2>
+                        <p class="align-left">CREATE a node with properties</p>
+                        <pre><code class="cypher">CREATE (n:Person {name:"Bert"});</code></pre>
+                        <p class="align-left">Find all Person nodes</p>
+                        <pre><code class="cypher">MATCH (n:Person) return n;</code></pre>
+                    </section>
+
+                </section>
+
+
+                <section>
+                    <section>
+                        <h2>Neo4J Movies Demo</h2>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Big Data Example</h2>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h2>What's next?</h2>
+                    </section>
+
+                    <section data-background="images/explore.gif">
+                        <h1 class="make-pop">Traverse!</h1>
+                    </section>
+
+                    <section>
+                        <h2>Resources</h2>
+                        <ul>
+                            <li><a target="_blank" href="http://graphdatabases.com/">Graph Database Book</a></li>
+                            <li><a target="_blank" href="http://www.remwebdevelopment.com/blog/sql/some-basic-and-useful-cypher-queries-for-neo4j-201.html">Basic Cypher Queries</li>
+                            <li><a target="_blank" href="https://github.com/neo4j-contrib/neo4j-mazerunner">Neo4J Maze Runner</a></li>
+                            <li><a target="_blank" href="http://www.kennybastani.com/2014/11/using-apache-spark-and-neo4j-for-big.html">Using Apache Spark, Neo4J for BIG Data Graph Analytics</a></li>
+                            <li><a target="_blank" href="http://www.esi2.us.es/~mbilbao/pdffiles/DiestelGT.pdf">Reinhard Diestel : Graph Theory</a></li>
+                            <li><a target="_blank" href="https://github.com/jasonclark1985/highlightjs-cypher">Highlight JS Cypher Configs</a></li>
+                        </ul>
+                    </section>
+                    <section data-background="images/golf_clap.gif">
+                        <h1 class="make-pop">THE END</h1>
+                    </section>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+
+            Reveal.addEventListener( 'ready', function( event ) {
+
+                console.log("cypher:", cypher);
+
+                hljs.registerLanguage("cypher", cypher);
+                hljs.initHighlightingOnLoad();
+            });
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'lib/cypher_highlight/cypher.js', async: false }
+                ]
+            });
+
+
+        </script>
+
+    </body>
+</html>
