@@ -138,7 +138,7 @@
                         </ul>
                     </section>
                     <section>
-                        <h2>Why Use a Graph Database?</h2>
+                        <h2>When should you use a Graph DB?</h2>
                         <ul>
                             <li>Data model is graph'ish</li>
                             <li>MOST queries for your data are graph'ish</li>
@@ -356,6 +356,28 @@
                         <pre><code class="cypher">CREATE (n:Person {name:"Bert"});</code></pre>
                         <p class="align-left">Find all Person nodes</p>
                         <pre><code class="cypher">MATCH (n:Person) return n;</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Relationships</h2>
+                        <p class="align-left">Basic Relationship</p>
+                        <pre><code class="cypher">START n=node(13), m=node(14)
+CREATE (n)-[r:CHILD]->(m);</code></pre>
+                        <p>
+                            <ul>
+                                <li>All relationships MUST have a direction, though while querying you can ignore the direction.</li>
+                                <li>All relatoinships MUST be created with at least one relationship type</li>
+                            </ul>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2>Cypher : Relationships</h2>
+                        <p class="align-left">Relationships with data</p>
+                        <pre><code class="cypher">START n=node(13), m=node(14)
+CREATE (n)-[r:KNOWS {reason:"Went to college together"}]->(m);</code></pre>
+                        <p class="align-left">Search using relationships</p>
+                        <pre><code class="cypher">START n = node(529) MATCH (n)-[r:KNOWS]->(m) return m;</code></pre>
                     </section>
 
                     <section>
