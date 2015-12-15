@@ -37,6 +37,7 @@ code.hljs {
 
 .reveal a:hover {
     color: #5C4819 !important;
+    text-decoration: underline;
 }
 
 .link-highlight {
