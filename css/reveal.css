@@ -35,6 +35,14 @@ code.hljs {
     color: #777;
 }
 
+.link-highlight {
+    color: #C99D33;
+}
+
+a:hover .link-highlight {
+    color: #FFDA82;
+}
+
 .make-pop {
     display: inline-block;
     padding: 10px 75px !important;
